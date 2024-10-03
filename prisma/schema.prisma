@@ -12,5 +12,9 @@ generator client {
 
 model Techx {
   partid String @unique @id 
-  dept String 
+  name String 
+  college String 
+  dept String
+  event1 String
+  event2 String
 }
