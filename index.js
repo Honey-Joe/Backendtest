@@ -1,9 +1,20 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const app = express();
+const cors = require('cors');
 
 // Middleware to parse incoming JSON
 app.use(express.json());
+app.use(cors({
+    origin: 'http://localhost:5173'
+ }));
+
+ app.use(cors({
+    origin: 'http://localhost:5173',
+    methods: 'GET,POST,PUT,DELETE',
+    allowedHeaders: 'Content-Type,Authorization'
+ }));
+ 
 
 // MongoDB connection string
 const mongoURI = 'mongodb+srv://honeyjoe942:PPpbUYKPI1erBhhH@techx.gkypa.mongodb.net/'; // Change this to your MongoDB URI
