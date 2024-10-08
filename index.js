@@ -27,7 +27,10 @@ mongoose.connect(mongoURI)
 const UserSchema = new mongoose.Schema({
     name: String,
     email: String,
-    age: Number
+    dept : String,
+    college : String,
+    event1 : String,
+    event2 : String,
 });
 
 const User = mongoose.model('User', UserSchema);
