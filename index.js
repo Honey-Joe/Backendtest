@@ -5,12 +5,13 @@ const app = express();
 
 mongoose.connect("mongodb+srv://honeyjoe942:PPpbUYKPI1erBhhH@techx.gkypa.mongodb.net/Techx")
 
-const userSchema = new mongoose.Schema({
-    name:String,
-    age:Number
-})
+const UserSchema = new mongoose.Schema({
+    name: String,
+    email: String,
+    age: Number
+});
 
-const User = mongoose.model('User', userSchema);
+const User = mongoose.model('User', UserSchema);
 
 
 
