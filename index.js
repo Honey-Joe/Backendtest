@@ -21,9 +21,7 @@ const mongoURI = 'mongodb+srv://honeyjoe942:PPpbUYKPI1erBhhH@techx.gkypa.mongodb
 mongoose.connect(mongoURI)
 
 // Define a simple route
-app.get('/', (req, res) => {
-    res.send('Hello from Express and MongoDB!');
-});
+
 
 // Define a User Schema and Model
 const UserSchema = new mongoose.Schema({
@@ -35,7 +33,7 @@ const UserSchema = new mongoose.Schema({
 const User = mongoose.model('User', UserSchema);
 
 // API to create a new user
-app.post('/users', async (req, res) => {
+app.post('/', async (req, res) => {
     const newUser = new User(req.body);
     try {
         const savedUser = await newUser.save();
@@ -46,7 +44,7 @@ app.post('/users', async (req, res) => {
 });
 
 // API to get all users
-app.get('/users', async (req, res) => {
+app.get('/', async (req, res) => {
     try {
         const users = await User.find();
         res.json(users);
