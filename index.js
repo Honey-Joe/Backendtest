@@ -29,8 +29,8 @@ const UserSchema = new mongoose.Schema({
     email: String,
     dept : String,
     college : String,
-    event1 : String,
-    event2 : String,
+    event1 : JSON,
+    event2 : JSON,
 });
 
 const User = mongoose.model('User', UserSchema);
