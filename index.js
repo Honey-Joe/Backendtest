@@ -5,15 +5,15 @@ const cors = require('cors');
 
 // Middleware to parse incoming JSON
 app.use(express.json());
-app.use(cors({
-    origin: 'https://techx-eight.vercel.app/'
- }));
+const corsOptions = {
+    origin: 'https://techx-eight.vercel.app', // Remove the trailing slash
+    optionsSuccessStatus: 200
+  };
+  app.use(cors(corsOptions));
 
- app.use(cors({
-    origin: 'https://techx-eight.vercel.app/',
-    methods: 'GET,POST,PUT,DELETE',
-    allowedHeaders: 'Content-Type,Authorization'
- }));
+  app.use(cors({ origin: '*' }));
+
+  
  
 
 // MongoDB connection string
