@@ -6,11 +6,11 @@ const cors = require('cors');
 // Middleware to parse incoming JSON
 app.use(express.json());
 app.use(cors({
-    origin: 'http://localhost:5173'
+    origin: 'https://techx-eight.vercel.app/'
  }));
 
  app.use(cors({
-    origin: 'http://localhost:5173',
+    origin: 'https://techx-eight.vercel.app/',
     methods: 'GET,POST,PUT,DELETE',
     allowedHeaders: 'Content-Type,Authorization'
  }));
