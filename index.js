@@ -5,13 +5,17 @@ const cors = require('cors');
 
 // Middleware to parse incoming JSON
 app.use(express.json());
-const corsOptions = {
-    origin: 'https://techx-24.vercel.app/', // Remove the trailing slash
-    optionsSuccessStatus: 200
-  };
-  app.use(cors(corsOptions));
-
-  app.use(cors({ origin: '*' }));
+app.use(cors({
+    origin: (origin, callback) => {
+      const allowedOrigins = ['https://techx-24.vercel.app'];
+      if (allowedOrigins.includes(origin) || !origin) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    }
+  }));
+  
 
   
  
