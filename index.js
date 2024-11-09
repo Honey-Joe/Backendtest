@@ -6,7 +6,7 @@ const cors = require('cors');
 // Middleware to parse incoming JSON
 app.use(express.json());
 const corsOptions = {
-    origin: 'https://techx-eight.vercel.app', // Remove the trailing slash
+    origin: 'https://techx-24.vercel.app/', // Remove the trailing slash
     optionsSuccessStatus: 200
   };
   app.use(cors(corsOptions));
