@@ -2,6 +2,8 @@ const express = require('express');
 const mongoose = require('mongoose');
 const app = express();
 const cors = require('cors');
+const userRoutes = require('./routes/userRoutes');
+
 
 // Middleware to parse incoming JSON
 app.use(express.json());
@@ -17,7 +19,8 @@ app.use(cors({
   }));
   
 
-  
+  app.use('/api/users', userRoutes);
+
  
 
 // MongoDB connection string
@@ -30,7 +33,11 @@ mongoose.connect(mongoURI)
 // Define a User Schema and Model
 const UserSchema = new mongoose.Schema({
     name: String,
-    email: String,
+    email: {
+        type: String,
+        required: true,
+        unique : true,
+    },
     dept : String,
     college : String,
     event1 : JSON,
