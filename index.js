@@ -60,6 +60,21 @@ app.get('/', async (req, res) => {
     }
 });
 
+//To check email 
+app.post("/email",async (req,res)=>{
+    const email = req.body;
+    try{
+        const user = await User.findOne(email);
+        if(user){
+            return res.status(400).json({message:"Email already exist"})
+        }
+        res.status(200).json({message:"Email Available"})
+
+    }catch(e){
+        res.status(500).json({message:"Server Error"})
+    }
+
+})
 // Start the Express server
 const PORT = 3000;
 app.listen(PORT, () => {
