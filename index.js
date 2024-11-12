@@ -5,6 +5,7 @@ const cors = require('cors');
 
 // Middleware to parse incoming JSON
 app.use(express.json());
+app.use(cors()); // Enable CORS for all origins
 app.use(cors({
     origin: (origin, callback) => {
       const allowedOrigins = ['https://techx-24.vercel.app'];
