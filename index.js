@@ -22,7 +22,7 @@ app.use(cors({
  
 
 // MongoDB connection string
-const mongoURI = 'mongodb+srv://honeyjoe942:PPpbUYKPI1erBhhH@techx.gkypa.mongodb.net/'; // Change this to your MongoDB URI
+const mongoURI = 'mongodb+srv://honeyjoe942:Honey0511@techx.gkypa.mongodb.net/'; // Change this to your MongoDB URI
 mongoose.connect(mongoURI)
 
 // Define a simple route
