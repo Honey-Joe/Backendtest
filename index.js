@@ -76,6 +76,10 @@ app.post("/email",async (req,res)=>{
     }
 
 })
+app.get("/email",async (req,res)=>{
+    const user  = await User.findOne(email);
+    res.json({data:user,message:"email"})
+})
 // Start the Express server
 const PORT = 3000;
 app.listen(PORT, () => {
