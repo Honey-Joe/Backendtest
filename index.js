@@ -28,6 +28,7 @@ mongoose.connect(mongoURI)
 // Define a simple route
 
 
+
 // Define a User Schema and Model
 const UserSchema = new mongoose.Schema({
     name: String,
@@ -38,7 +39,37 @@ const UserSchema = new mongoose.Schema({
     event2 : JSON,
 });
 
+const EventSchema = new mongoose.Schema({
+    eventname: String,
+    eventid: String,
+    eventdesc: String
+});
+
+const Event = mongoose.model('Event' , EventSchema);
+
 const User = mongoose.model('User', UserSchema);
+
+app.post("/event", async(req,res)=>{
+    const eventdata = new Event(req.body);
+    try{
+        const eventstrore = await eventdata.save();
+        res.json(eventdata)
+    }
+    catch(e){
+        res.status(400).json({message:"error"})
+    }
+})
+
+app.get("/event", async(req,res)=>{
+    try {
+        const eusers = await Event.find();
+        res.json(eusers);
+    } catch (err) {
+        res.status(400).json({ message: err.message });
+    }
+});
+
+
 
 // API to create a new user
 app.post('/', async (req, res) => {
