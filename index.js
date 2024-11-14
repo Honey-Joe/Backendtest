@@ -8,7 +8,7 @@ app.use(express.json());
 app.use(cors()); // Enable CORS for all origins
 app.use(cors({
     origin: (origin, callback) => {
-      const allowedOrigins = ['https://techx-24.vercel.app'];
+      const allowedOrigins = ['http://localhost:5173/event'];
       if (allowedOrigins.includes(origin) || !origin) {
         callback(null, true);
       } else {
