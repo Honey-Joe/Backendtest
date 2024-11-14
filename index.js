@@ -73,6 +73,7 @@ app.post("/email",async (req,res)=>{
 
     }catch(e){
         res.status(500).json({message:"Server Error"})
+        res.send(e);
     }
 
 })
