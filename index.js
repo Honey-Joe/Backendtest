@@ -77,8 +77,12 @@ app.post("/email",async (req,res)=>{
 
 })
 app.get("/email",async (req,res)=>{
-    const user  = await User.findOne(email);
-    res.json({data:user,message:"email"})
+    try {
+        const users = await User.findOne(email);
+        res.json(users);
+    } catch (err) {
+        res.status(400).json({ message: err.message });
+    }
 })
 // Start the Express server
 const PORT = 3000;
