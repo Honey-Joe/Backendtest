@@ -44,20 +44,14 @@ const EventSchema = new mongoose.Schema({
     eventid: String,
     eventdesc: String,
     eventurl: String,
-    co1: String,
-    co2: String,
-    co1num: String,
-    co2num: String
+    
 });
 const NonEventSchema = new mongoose.Schema({
     eventname: String,
     eventid: String,
     eventdesc: String,
     eventurl: String,
-    co1: String,
-    co2: String,
-    co1num: String,
-    co2num: String
+    
 });
 
 const Event = mongoose.model('Event' , EventSchema);
