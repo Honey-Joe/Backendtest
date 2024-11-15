@@ -22,10 +22,11 @@ app.use(cors({
  
 
 // MongoDB connection string
-const mongoURI = 'mongodb+srv://honeyjoe942:PPpbUYKPI1erBhhH@techx.gkypa.mongodb.net/'; // Change this to your MongoDB URI
+const mongoURI = 'mongodb+srv://honeyjoe942:Honey0511@techx.gkypa.mongodb.net/'; // Change this to your MongoDB URI
 mongoose.connect(mongoURI)
 
 // Define a simple route
+
 
 
 // Define a User Schema and Model
@@ -38,7 +39,37 @@ const UserSchema = new mongoose.Schema({
     event2 : JSON,
 });
 
+const EventSchema = new mongoose.Schema({
+    eventname: String,
+    eventid: String,
+    eventdesc: String
+});
+
+const Event = mongoose.model('Event' , EventSchema);
+
 const User = mongoose.model('User', UserSchema);
+
+app.post("/event", async(req,res)=>{
+    const eventdata = new Event(req.body);
+    try{
+        const eventstrore = await eventdata.save();
+        res.json(eventdata)
+    }
+    catch(e){
+        res.status(400).json({message:"error"})
+    }
+})
+
+app.get("/event", async(req,res)=>{
+    try {
+        const eusers = await Event.find();
+        res.json(eusers);
+    } catch (err) {
+        res.status(400).json({ message: err.message });
+    }
+});
+
+
 
 // API to create a new user
 app.post('/', async (req, res) => {
@@ -69,13 +100,14 @@ app.post("/email",async (req,res)=>{
         if(user){
             return res.status(400).json({message:"Email already exist"})
         }
-        res.status(200).json({message:"Email available"})
+        res.status(200).json({message:"Email Available"})
 
     }catch(e){
         res.status(500).json({message:"Server Error"})
     }
 
 })
+
 // Start the Express server
 const PORT = 3000;
 app.listen(PORT, () => {
