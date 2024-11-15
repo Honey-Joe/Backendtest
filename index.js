@@ -71,6 +71,24 @@ app.post("/event", async(req,res)=>{
     }
 })
 
+app.get('/event/:eventid', async (req, res) => {
+    const { eventid } = req.params; // Extract path parameter
+
+    try {
+        // Find the specific document by eventid
+        const event = await Event.findOne({ eventid });
+
+        if (!event) {
+            return res.status(404).json({ message: 'Event not found' });
+        }
+
+        res.status(200).json({ event });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+});
+
 
 
 app.get("/event", async(req,res)=>{
