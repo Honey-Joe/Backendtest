@@ -42,10 +42,19 @@ const UserSchema = new mongoose.Schema({
 const EventSchema = new mongoose.Schema({
     eventname: String,
     eventid: String,
-    eventdesc: String
+    eventdesc: String,
+    eventurl: String
+});
+const NonEventSchema = new mongoose.Schema({
+    eventname: String,
+    eventid: String,
+    eventdesc: String,
+    eventurl: String
 });
 
 const Event = mongoose.model('Event' , EventSchema);
+
+const NonEvent = mongoose.model('NonEvent' , EventSchema);
 
 const User = mongoose.model('User', UserSchema);
 
@@ -63,6 +72,26 @@ app.post("/event", async(req,res)=>{
 app.get("/event", async(req,res)=>{
     try {
         const eusers = await Event.find();
+        res.json(eusers);
+    } catch (err) {
+        res.status(400).json({ message: err.message });
+    }
+});
+
+app.post("/nonevent", async(req,res)=>{
+    const eventdata = new NonEvent (req.body);
+    try{
+        const eventstrore = await eventdata.save();
+        res.json(eventdata)
+    }
+    catch(e){
+        res.status(400).json({message:"error"})
+    }
+})
+
+app.get("/nonevent", async(req,res)=>{
+    try {
+        const eusers = await NonEvent.find();
         res.json(eusers);
     } catch (err) {
         res.status(400).json({ message: err.message });
