@@ -72,7 +72,7 @@ app.post("/event", async(req,res)=>{
 })
 
 app.get('/event/:eventid', async (req, res) => {
-    const { eventid } = req.params.eventid; // Extract path parameter
+    const { eventid } = req.params; // Extract path parameter
 
     try {
         // Find the specific document by eventid
