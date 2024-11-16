@@ -44,6 +44,7 @@ const EventSchema = new mongoose.Schema({
     eventid: String,
     eventdesc: String,
     eventurl: String,
+    rules: JSON
     
 });
 const NonEventSchema = new mongoose.Schema({
@@ -88,6 +89,26 @@ app.get('/event/:eventid', async (req, res) => {
         res.status(500).json({ message: 'Internal server error' });
     }
 });
+app.put("/event/:id", async (req, res) => {
+    try {
+      const { id } = req.params; // Extract eventid from URL
+      const updatedData = req.body; // Extract data to update from request body
+  
+      // Find and update the event
+      const updatedEvent = await Event.findOneAndUpdate({ eventid: id }, updatedData, {
+        new: true, // Return the updated document
+        runValidators: true // Ensure schema validation
+      });
+  
+      if (!updatedEvent) {
+        return res.status(404).send({ error: "Event not found" });
+      }
+  
+      res.status(200).send(updatedEvent); // Respond with the updated event
+    } catch (error) {
+      res.status(500).send({ error: "Failed to update event", details: error.message });
+    }
+  });
 
 
 
