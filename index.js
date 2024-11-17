@@ -52,7 +52,7 @@ const NonEventSchema = new mongoose.Schema({
     eventid: String,
     eventdesc: String,
     eventurl: String,
-    
+    rules: JSON
 });
 
 const Event = mongoose.model('Event' , EventSchema);
@@ -60,7 +60,7 @@ const Event = mongoose.model('Event' , EventSchema);
 const NonEvent = mongoose.model('NonEvent' , EventSchema);
 
 const User = mongoose.model('User', UserSchema);
-
+//Event Routes
 app.post("/event", async(req,res)=>{
     const eventdata = new Event(req.body);
     try{
@@ -71,7 +71,6 @@ app.post("/event", async(req,res)=>{
         res.status(400).json({message:"error"})
     }
 })
-
 app.get('/event/:eventid', async (req, res) => {
     const { eventid } = req.params; // Extract path parameter
 
@@ -109,15 +108,30 @@ app.put("/event/:id", async (req, res) => {
       res.status(500).send({ error: "Failed to update event", details: error.message });
     }
   });
-
-
-
 app.get("/event", async(req,res)=>{
     try {
         const eusers = await Event.find();
         res.json(eusers);
     } catch (err) {
         res.status(400).json({ message: err.message });
+    }
+});
+//NonTechnical Event Routes
+app.get('/nonevent/:eventid', async (req, res) => {
+    const { eventid } = req.params; // Extract path parameter
+
+    try {
+        // Find the specific document by eventid
+        const event = await NonEvent.findOne({ eventid });
+
+        if (!event) {
+            return res.status(404).json({ message: 'Event not found' });
+        }
+
+        res.status(200).json({ event });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: 'Internal server error' });
     }
 });
 
@@ -140,6 +154,27 @@ app.get("/nonevent", async(req,res)=>{
         res.status(400).json({ message: err.message });
     }
 });
+
+app.put("/nonevent/:id", async (req, res) => {
+    try {
+      const { id } = req.params; 
+      const updatedData = req.body; 
+  
+
+      const updatedEvent = await NonEvent.findOneAndUpdate({ eventid: id }, updatedData, {
+        new: true, 
+        runValidators: true 
+      });
+  
+      if (!updatedEvent) {
+        return res.status(404).send({ error: "Event not found" });
+      }
+  
+      res.status(200).send(updatedEvent); 
+    } catch (error) {
+      res.status(500).send({ error: "Failed to update event", details: error.message });
+    }
+  });
 
 
 
