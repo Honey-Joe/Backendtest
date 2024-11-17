@@ -91,20 +91,20 @@ app.get('/event/:eventid', async (req, res) => {
 });
 app.put("/event/:id", async (req, res) => {
     try {
-      const { id } = req.params; // Extract eventid from URL
-      const updatedData = req.body; // Extract data to update from request body
+      const { id } = req.params; 
+      const updatedData = req.body; 
   
-      // Find and update the event
+
       const updatedEvent = await Event.findOneAndUpdate({ eventid: id }, updatedData, {
-        new: true, // Return the updated document
-        runValidators: true // Ensure schema validation
+        new: true, 
+        runValidators: true 
       });
   
       if (!updatedEvent) {
         return res.status(404).send({ error: "Event not found" });
       }
   
-      res.status(200).send(updatedEvent); // Respond with the updated event
+      res.status(200).send(updatedEvent); 
     } catch (error) {
       res.status(500).send({ error: "Failed to update event", details: error.message });
     }
