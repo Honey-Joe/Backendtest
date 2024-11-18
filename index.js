@@ -34,11 +34,11 @@ const UserSchema = new mongoose.Schema({
     name: String,
     email: String,
     dept : String,
-    degree: JSON,
+    degree: String,
     contact: String,
     college : String,
-    event1 : JSON,
-    event2 : JSON,
+    event1 : String,
+    event2 : String,
 });
 
 const EventSchema = new mongoose.Schema({
