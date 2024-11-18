@@ -34,6 +34,8 @@ const UserSchema = new mongoose.Schema({
     name: String,
     email: String,
     dept : String,
+    degree: String,
+    contact: String,
     college : String,
     event1 : JSON,
     event2 : JSON,
