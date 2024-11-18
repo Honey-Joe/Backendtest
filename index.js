@@ -177,7 +177,6 @@ app.put("/nonevent/:id", async (req, res) => {
   });
 
 
-
 // API to create a new user
 app.post('/', async (req, res) => {
     const newUser = new User(req.body);
