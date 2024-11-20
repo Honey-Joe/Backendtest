@@ -2,6 +2,8 @@ const express = require('express');
 const mongoose = require('mongoose');
 const app = express();
 const cors = require('cors');
+require('dotenv').config();
+
 
 // Middleware to parse incoming JSON
 app.use(express.json());
@@ -22,7 +24,8 @@ app.use(cors({
  
 
 // MongoDB connection string
-const mongoURI = 'mongodb+srv://honeyjoe942:Honey0511@techx.gkypa.mongodb.net/'; // Change this to your MongoDB URI
+const mongoURI = process.env.MONGO_URI;
+// Change this to your MongoDB URI
 mongoose.connect(mongoURI)
 
 // Define a simple route
