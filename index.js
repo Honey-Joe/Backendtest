@@ -18,11 +18,6 @@ app.use(cors({
       }
     }
   }));
-  
-
-  
- 
-
 // MongoDB connection string
 const mongoURI = "mongodb+srv://honeyjoe942:Honey0511@techx.gkypa.mongodb.net/"
 // Change this to your MongoDB URI
@@ -194,6 +189,8 @@ app.post('/', async (req, res) => {
     }
 });
 
+
+
 // API to get all users
 app.get('/', async (req, res) => {
     try {
@@ -203,6 +200,77 @@ app.get('/', async (req, res) => {
         res.status(400).json({ message: err.message });
     }
 });
+
+app.get('/admin/CodeCrack', async (req, res) => {
+    try {
+        const users = await User.find({event1:"Code Crack"});
+        res.json(users);
+    } catch (err) {
+        res.status(400).json({ message: err.message });
+    }
+});
+app.get('/admin/WebMaestro', async (req, res) => {
+    try {
+        const users = await User.find({event1:"Web Maestro"});
+        res.json(users);
+    } catch (err) {
+        res.status(400).json({ message: err.message });
+    }
+});
+app.get('/admin/InnovExhibit', async (req, res) => {
+    try {
+        const users = await User.find({event1:"InnovExhibit"});
+        res.json(users);
+    } catch (err) {
+        res.status(400).json({ message: err.message });
+    }
+});
+app.get('/admin/QuizQuest', async (req, res) => {
+    try {
+        const users = await User.find({event1:"Quiz Quest"});
+        res.json(users);
+    } catch (err) {
+        res.status(400).json({ message: err.message });
+    }
+});
+app.get('/admin/TechLink', async (req, res) => {
+    try {
+        const users = await User.find({event2:"Tech Link"});
+        res.json(users);
+    } catch (err) {
+        res.status(400).json({ message: err.message });
+    }
+});
+app.get('/admin/QuietQuest', async (req, res) => {
+    try {
+        const users = await User.find({event2:"Quiet Quest"});
+        res.json(users);
+    } catch (err) {
+        res.status(400).json({ message: err.message });
+    }
+});
+app.get('/admin/DesignDazzle', async (req, res) => {
+    try {
+        const users = await User.find({event2:"Design Dazzle"});
+        res.json(users);
+    } catch (err) {
+        res.status(400).json({ message: err.message });
+    }
+});
+app.get('/admin/BrandBlast', async (req, res) => {
+    try {
+        const users = await User.find({event2:"Brand Blast"});
+        res.json(users);
+    } catch (err) {
+        res.status(400).json({ message: err.message });
+    }
+});
+
+
+
+
+
+
 
 //To check email 
 app.post("/email",async (req,res)=>{
