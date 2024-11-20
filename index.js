@@ -42,6 +42,7 @@ const UserSchema = new mongoose.Schema({
     college : String,
     event1 : String,
     event2 : String,
+    payment: String
 });
 
 const EventSchema = new mongoose.Schema({
