@@ -30,7 +30,11 @@ mongoose.connect(mongoURI)
 // Define a User Schema and Model
 const UserSchema = new mongoose.Schema({
     name: String,
-    email: String,
+    email: {
+        type: String,
+        required: true,
+        unique: true,
+    },
     dept : String,
     degree: String,
     contact: String,
